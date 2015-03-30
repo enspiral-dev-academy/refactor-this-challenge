@@ -44,7 +44,6 @@ class Bingo
   end
 
   def check_diagonal!
-    # extract diagonal,
     diagonal = []
     5.times do |i|
       diagonal << @board[i][i]

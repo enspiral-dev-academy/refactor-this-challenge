@@ -115,5 +115,3 @@ assert_true(bingo.finished)
   bingo.check_horizontal!
   bingo.check_vertical!
   assert_false(bingo.finished)
-
-
