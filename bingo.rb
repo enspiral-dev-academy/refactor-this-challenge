@@ -25,21 +25,21 @@ class Bingo
     end
   end
 
+  def checking_if_won(line_of_exes)
+    if line_of_exes.all? { |i| i == "X" }
+      @finished = true
+    end
+  end
+
   def check_vertical!
     @board.transpose.each do |col|
-      if col.all? { |i| i == "X" }
-        @finished = true
-        break
-      end
+      checking_if_won(col)
     end
   end
 
   def check_horizontal!
     @board.each do |row|
-      if row.all? { |i| i == "X" }
-        @finished = true
-        break
-      end
+      checking_if_won(row)
     end
   end
 
@@ -48,16 +48,12 @@ class Bingo
     5.times do |i|
       diagonal << @board[i][i]
     end
-    if diagonal.all? { |i| i == "X" }
-      @finished = true
-    end
+    checking_if_won(diagonal)
     other_diagonal = []
     5.times do |i|
       other_diagonal << @board[i][4-i]
     end
-    if other_diagonal.all? { |i| i == "X" }
-      @finished = true
-    end
+    checking_if_won(other_diagonal)
   end
 
   def print_board
