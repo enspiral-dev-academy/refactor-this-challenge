@@ -13,7 +13,11 @@ class Bingo
   end
 
   def column(letter)
-    @board.transpose[@letters.index(letter)]
+    @board.transpose[letters_index(letter)]
+  end
+
+  def letters_index(letter)
+    @letters.index(letter)
   end
 
   def mark!(ticket)
@@ -21,7 +25,7 @@ class Bingo
     number = ticket[:number]
     current_column = column(letter)
     if current_column.include?(number)
-      @board[current_column.index(number)][@letters.index(letter)] = "X"
+      @board[current_column.index(number)][letters_index(letter)] = "X"
     end
   end
 
@@ -43,16 +47,26 @@ class Bingo
     end
   end
 
-  def check_diagonal!
+  def find_diagonal
     diagonal = []
     5.times do |i|
       diagonal << @board[i][i]
     end
-    checking_if_won(diagonal)
+    diagonal
+  end
+
+  def find_other_diagonal
     other_diagonal = []
     5.times do |i|
       other_diagonal << @board[i][4-i]
     end
+    other_diagonal
+  end
+
+  def check_diagonal!
+    diagonal = find_diagonal
+    checking_if_won(diagonal)
+    other_diagonal = find_other_diagonal
     checking_if_won(other_diagonal)
   end
 
