@@ -65,10 +65,8 @@ class Bingo
   end
 
   def check_diagonal!
-    diagonal = find_diagonal
-    checking_if_won(diagonal)
-    other_diagonal = find_other_diagonal
-    checking_if_won(other_diagonal)
+    checking_if_won(find_diagonal)
+    checking_if_won(find_other_diagonal)
   end
 
   def print_board
